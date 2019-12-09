@@ -20,11 +20,11 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 class DataFile:
     def __init__(self, json_obj):
         self.json_obj = json_obj
-        self.header = [i for i in json_obj[0]]
         self.csv_name = 'BART_weather.csv'
 
     def read_csv(self):
         self.working_csv = pd.read_csv(self.csv_name, sep=',')
+        self.header = list(self.working_csv)
 
     def write_csv(self):
         self.working_csv.to_csv(self.csv_name, sep=',', index=False)
