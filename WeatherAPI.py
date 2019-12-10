@@ -7,7 +7,10 @@ class Weather:
     owm.get_API_key()
 
     def __init__(self, lat, lon):
-        self.obs = self.owm.weather_at_coords(lat, lon)
+        try:
+            self.obs = self.owm.weather_at_coords(lat, lon)
+        except pyowm.exceptions.api_call_error.APICallTimeoutError:
+            raise ConnectionError('pyowm API timed out.')
 
     def json_weather(self):
         get_json = json.loads(self.obs.get_weather().to_JSON())

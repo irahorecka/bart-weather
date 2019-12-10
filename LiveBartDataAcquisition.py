@@ -50,7 +50,7 @@ def main():
     while True:
         try:
             current_departures = bart.fetch_multi_first_departures()
-        except (KeyError, timeout.TimeoutError):
+        except (ConnectionError, KeyError, timeout.TimeoutError):
             handle_exceptions()
             continue
         leaving_trains = bart.fetch_leaving_train(current_departures)
