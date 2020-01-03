@@ -1,3 +1,10 @@
+"""
+File to acquire realtime BART departure
+from every station. Passes long, lat of 
+every station to WeatherAPI to acquire
+weather for every station when train departs.
+"""
+
 import datetime
 from pybart.api import BART
 from StationKey import all_stations

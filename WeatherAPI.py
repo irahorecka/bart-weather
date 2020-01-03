@@ -1,3 +1,9 @@
+"""
+File to gather weather api from
+library pyowm. Weather class interacts
+with class JSONify from BartAPI.py
+"""
+
 import json
 import pyowm
 

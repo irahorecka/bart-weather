@@ -1,3 +1,9 @@
+"""
+Stores dictionary all_stations that has
+information for every BART station; such
+as address, long, lat.
+"""
+
 all_stations = {'12TH': {'abbr': '12TH',
           'address': '1245 Broadway',
           'city': 'Oakland',
