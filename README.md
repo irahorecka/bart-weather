@@ -1,16 +1,15 @@
 # BART_weather
 ## **Introduction**
-**BART_weather** is a data science project to predict BART delays as a factor of current weather.
-
+**BART_weather** is a data science project. It gathers data on departing BART trains across the Bay Area and pairs this with weather information at the departure location.
+<br>
 <p align = 'center'>
 <img src=https://i.imgur.com/5dcTP1s.png alt="LCD with I2C backpack - RPi"
      width="400"><br>
-</p>
-
+</p><br>
 
 This project can run on any platfrom that supports **Python 3.5** and above.<br>
 
-The approach is simple: BART has a transparent API that transmits a myriad of information. I monitor live updates of when trains are leaving from every BART station in the Bay Area. When the train departs a station, I capture various information about the train and the current weather at its station. The most important factors are the train's delay (in seconds) and the current weather at the station (using geological coordinates).<br><br>
+The approach is simple: BART has a transparent API that transmits a myriad of information. We monitor live updates of when trains are leaving from every BART station in the Bay Area. When the train departs a station, we capture various information about the train and the current weather at its station. The most important factors are the train's delay (in seconds) and the current weather at the station (using geological coordinates).<br>
 
 The information is conitnually written to a CSV file (```BART_weather.csv```) upon detection of a departing train. Please take a look at ```BART_weather.csv``` to view the captured parameters.
 
