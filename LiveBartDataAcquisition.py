@@ -7,6 +7,7 @@ storage.
 
 import os
 import time
+import sys
 import pandas as pd
 import BartAPI
 import TimeOut as timeout
@@ -40,6 +41,13 @@ class DataFile:
         return masterlist
 
 
+def print_working_status(increment):
+    if not isinstance(increment, int):
+        raise TypeError('"increment" can only take int type.')
+    sys.stdout.write("  Working{}   \r".format('.' * increment))
+    sys.stdout.flush()
+
+
 def handle_exceptions():
     time.sleep(1)
 
@@ -47,7 +55,11 @@ def handle_exceptions():
 def main():
     os.chdir(BASE_DIR)
     bart = BartAPI.Bart()
+    i = 1
     while True:
+        print_working_status(i)
+        i += 1 if i < 4 else -3
+
         try:
             current_departures = bart.fetch_multi_first_departures()
         except (ConnectionError, KeyError, timeout.TimeoutError):
