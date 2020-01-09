@@ -8,6 +8,8 @@ storage.
 import os
 import time
 import sys
+from typing import List, Any
+
 import pandas as pd
 import BartAPI
 import TimeOut as timeout
@@ -32,7 +34,7 @@ class DataFile:
             self.working_csv.loc[len(self.working_csv)] = item
 
     def extend_header(self):
-        masterlist = []
+        masterlist: List[List[Any]] = []
         for i in range(len(self.json_obj)):
             slavelist = []
             for head in self.header:
