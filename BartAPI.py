@@ -24,22 +24,26 @@ class Bart:
             time_detail = minute_departure['time']
             station_train_key = "{}_{}".format(stn_detail['abbr'], time_detail[2])
             if time_detail[0] == 'Leaving':
+
                 if not self.handle_suspended_trains(station_train_key):
                     continue
                 json_package = JSONify(time_detail, stn_detail, station_train_key)
                 json_dict = json_package.package_jsons_to_dict()
                 wthr_stn_list.append(json_dict)
+
         return wthr_stn_list
 
     def fetch_multi_first_departures(self):
         stn_abbr_dict = {}
         for stn_abbr, value in all_stations.items():
             departure = self.fetch_single_live_departure(stn_abbr)
+
             if not departure:
                 continue
             first_departure = return_first_sorted_departure(departure)
             stn_abbr_dict[stn_abbr] = {'time': first_departure,
                                        'detail': all_stations[stn_abbr]}
+
         return stn_abbr_dict
 
     @timeout.timeout(5)  # timeout connection after 5 seconds of inactivity
@@ -69,9 +73,10 @@ class Bart:
 def return_first_sorted_departure(stn_departures):
     sorted_stn_time_departures = sort_departure_time(stn_departures)
     first_departure = sorted_stn_time_departures[0]
+
     if first_departure[0] == 0:
         first_departure[0] = 'Leaving'
-    # does not capture multiple 0min departures if present
+    # does not capture multiple 0 min departures if present
     return first_departure
 
 
@@ -80,12 +85,15 @@ def sort_departure_time(stn_departures):
     for index, destination in enumerate(stn_departures):
         first_estimate = destination['estimate'][0]
         minute_departure = first_estimate['minutes']
+
         if minute_departure == 'Leaving':
             minute_departure = 0
+
         seconds_delay = first_estimate['delay']
         train_key = "{}_{}".format(first_estimate['color'], first_estimate['length'])
         times_departure.append([int(minute_departure), int(seconds_delay), train_key])
     sorted_times_departure = sorted(times_departure, key=lambda x: x[0])
+
     return sorted_times_departure
 
 
@@ -101,12 +109,14 @@ class JSONify:
         stn['delay'] = self.time_json[1]
         station_dict = self.station_key_to_dict()
         wthr_stn = {**stn, **wthr, **station_dict}
+
         return wthr_stn
 
     def fetch_weather(self):
         weather = Weather(float(self.stn_json['gtfs_latitude']),
                           float(self.stn_json['gtfs_longitude']))
         weather_dict = self.weather_json_to_dict(weather.json_weather())
+
         return weather_dict
 
     def weather_json_to_dict(self, json_weather):
@@ -132,6 +142,7 @@ class JSONify:
             'humidex': jw['humidex'],
             'heat_index': jw['heat_index']
         }
+
         return parse_jw
 
     def station_json_to_dict(self):
@@ -147,8 +158,10 @@ class JSONify:
             'state': js['state'],
             'zipcode': js['zipcode']
         }
+
         return parse_js
 
     def station_key_to_dict(self):
         stn_key_dict = {'station_key': self.stn_key}
+
         return stn_key_dict

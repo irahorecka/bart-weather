@@ -40,6 +40,7 @@ class DataFile:
             for head in self.header:
                 slavelist.append(self.json_obj[i][head])
             masterlist.append(slavelist)
+
         return masterlist
 
 
@@ -67,12 +68,14 @@ def main():
         except (ConnectionError, KeyError, timeout.TimeoutError):
             handle_exceptions()
             continue
+
         leaving_trains = bart.fetch_leaving_train(current_departures)
         try:
             bart_csv = DataFile(leaving_trains)
         except IndexError:
             handle_exceptions()
             continue
+
         bart_csv.read_csv()
         bart_csv.append_csv()
         bart_csv.write_csv()
