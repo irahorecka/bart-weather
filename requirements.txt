@@ -3,7 +3,7 @@ chardet==3.0.4
 geojson==2.5.0
 idna==2.8
 joblib==0.14.0
-numpy==1.17.4
+numpy==1.22.0
 pandas==0.25.3
 pybart==1.5.1
 pyowm==2.10.0
