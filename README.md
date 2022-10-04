@@ -1,6 +1,6 @@
-# BART_weather
+# bart-weather
 ## **Introduction**
-**BART_weather** is a data science project. It gathers data on departing BART trains across the Bay Area and pairs this with weather information at the departure location.
+**bart-weather** is a data science project. It gathers data on departing BART trains across the Bay Area and pairs this with weather information at the departure location.
 <br>
 <p align = 'center'>
 <img src=https://i.imgur.com/5dcTP1s.png alt="LCD with I2C backpack - RPi"
@@ -16,7 +16,7 @@ The information is conitnually written to a CSV file (```BART_weather.csv```) up
 ## **Python Setup**<br>
 This script requires Python 3.5 and above. Please look at requirements.txt for required Python libraries. Clone this repository onto your computer and use pip to install the necessary libraries, like this:<br><br>
 ```pip install -r requirements.txt``` <br><br>
-To run the scipt, open your terminal, navigate to the *BART_weather* directory, and type this:<br><br>
+To run the scipt, open your terminal, navigate to the *bart-weather* directory, and type this:<br><br>
 ```python LiveBartDataAcquisition.py```<br><br>
 This script will run indefinitely until interrupted. To interrupt the script, press *CTRL + C* in your running terminal.<br><br>
 
