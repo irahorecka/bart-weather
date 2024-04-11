@@ -1,7 +1,7 @@
 certifi==2023.7.22
 chardet==3.0.4
 geojson==2.5.0
-idna==2.8
+idna==3.7
 joblib==1.2.0
 numpy==1.22.0
 pandas==0.25.3
